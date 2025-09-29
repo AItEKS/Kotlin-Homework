@@ -27,35 +27,6 @@
 
 Файл `Main.kt` создает список из различных фигур и итерирует по нему, применяя общие операции для демонстрации полиморфизма. Каждая фигура корректно выполняет действия (`move`, `resize`, `rotate`) в соответствии со своей реализацией.
 
-```kotlin
-fun main() {
-    val figures: List<Figure> = listOf(
-        Rect(id = 1, x = 10, y = 20, width = 8, height = 4),
-        Circle(id = 2, x = -10, y = -5, radius = 5),
-        Square(id = 3, x = 0, y = 0, side = 6)
-    )
-
-    for (figure in figures) {
-        println("\n--- ${figure.javaClass.simpleName} (id=${figure.id}) ---")
-        println("Начальное состояние: $figure")
-        println("Площадь: ${figure.area()}")
-
-        if (figure is Movable) {
-            println("Начальная позиция: ${figure.getPos()}")
-            figure.move(10, 5)
-            println("Позиция после перемещения: ${figure.getPos()}")
-        }
-
-        if (figure is Transforming) {
-            figure.resize(2)
-            println("Состояние после масштабирования: $figure")
-            figure.rotate(RotateDirection.Clockwise, 0, 0)
-            println("Состояние после вращения: $figure")
-        }
-    }
-}
-```
-
 ## Результат выполнения
 
 Запуск `main` функции производит следующий консольный вывод, подтверждая, что все методы работают корректно для каждого типа фигуры.
